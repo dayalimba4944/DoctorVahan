@@ -18,30 +18,78 @@
                         <div class="section-title text-center mb-md-4">
                             <h2>QUOTE</h2>
                         </div>
-                        <form action="https://www.doctorvahaan.com/get-a-quote" method="post" autocomplete="off"
+                        <form action="{{('get-quote')}}" method="POST" autocomplete="off"
                             id="enquiryForm" novalidate="novalidate">
-                            <input type="hidden" name="_token" value="hFlGp5MdpeSPjVIsOLRZ6bBBhKDLGH55rZKUrIOH"
-                                autocomplete="off"> <input type="hidden" name="enquiry_type" value="corporate_enquiry">
+                            @csrf
+                            <!-- <input type="hidden" name="_token" value="hFlGp5MdpeSPjVIsOLRZ6bBBhKDLGH55rZKUrIOH" -->
+                                <!-- autocomplete="off"> <input type="hidden" name="enquiry_type" value="corporate_enquiry"> -->
                             <div class="form-row d-flex flex-row align-items-center gap-2 flex-wrap">
                                 <div class="form-group w-49">
-                                    <label for="">Name *</label>
+                                    <label for="">
+                                        <span>Name *</span>
+                                        <span>
+                                            @if (isset($errorResponse['name']) && count($errorResponse['name']) > 0)
+                                                <span style="color: red; margin-bottom: 10px;">
+                                                        @foreach ($errorResponse['name'] as $message)
+                                                                {{ ucfirst('name') }}: {{ $message }}
+                                                        @endforeach
+                                                </span>
+                                            @endif
+                                        </span>
+                                    </label>
                                     <input type="text" class="form-control" placeholder="Enter Name" name="name"
-                                        value="">
+                                        value="{{ isset($old_values['name']) ? $old_values['name'] : '' }}">
+                                        
                                 </div>
                                 <div class="form-group w-49">
-                                    <label for="">Email Address *</label>
+                                    <label for="">
+                                        <span>Email Address *</span>
+                                        <span>
+                                                @if (isset($errorResponse['email']) && count($errorResponse['email']) > 0)
+                                                    <span style="color: red; margin-bottom: 10px;">
+                                                            @foreach ($errorResponse['email'] as $message)
+                                                                {{ ucfirst('email') }}: {{ $message }}
+                                                            @endforeach
+                                                    </span>
+                                                @endif
+                                            </span>
+                                        </label>
                                     <input type="text" class="form-control" placeholder="Enter Email Address"
-                                        name="email" value="">
+                                        name="email" value="{{ isset($old_values['email']) ? $old_values['email'] : '' }}">
+                                        
                                 </div>
                                 <div class="form-group w-49">
-                                    <label for="">Phone Number *</label>
+                                    <label for="">
+                                        <span>Phone Number *</span>
+                                        <span>
+                                            @if (isset($errorResponse['phone_number']) && count($errorResponse['phone_number']) > 0)
+                                                <span style="color: red; margin-bottom: 10px;">
+                                                        @foreach ($errorResponse['phone_number'] as $message)
+                                                            {{ ucfirst('phone_number') }}: {{ $message }}
+                                                        @endforeach
+                                                </span>
+                                            @endif
+                                        </span>
+                                    </label>
                                     <input type="text" class="form-control" placeholder="Enter Phone Number"
-                                        name="phone" value="">
+                                    name="phone_number" value="{{ isset($old_values['phone_number']) ? $old_values['phone_number'] : '' }}">
+                                    
                                 </div>
                                 <div class="form-group w-49 checkout-form">
-                                    <label for="">Subject *</label>
+                                    <label for="">
+                                        <span>Subject *</span>
+                                        <span>
+                                            @if (isset($errorResponse['subject']) && count($errorResponse['subject']) > 0)
+                                                <span style="color: red; margin-bottom: 10px;">
+                                                        @foreach ($errorResponse['subject'] as $message)
+                                                            {{ ucfirst('subject') }}: {{ $message }}
+                                                        @endforeach
+                                                </span>
+                                            @endif
+                                        </span>
+                                    </label>
                                     <input type="text" class="form-control" placeholder="Enter Subject" name="subject"
-                                        value="">
+                                        value="{{ isset($old_values['subject']) ? $old_values['subject'] : '' }}">
                                 </div>
 
                                 <div class="form-group col-md-12">

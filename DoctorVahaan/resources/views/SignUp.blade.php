@@ -80,7 +80,32 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-10 col-sm-12 login_form p-md-5 p-2">
-                    <form action="" method="POST" class="w-100">
+                    <form action="{{('sign-up')}}" method="POST" class="w-100">
+                    @csrf
+                        <!-- @if (isset($errorResponse) && count($errorResponse) > 0)
+                            <div style="color: red; margin-bottom: 10px;">
+                                <strong>Please fix the following errors:</strong>
+                                <ul>
+                                    @foreach ($errorResponse as $field => $messages)
+                                        @foreach ($messages as $message)
+                                            <li>{{ ucfirst($field) }}: {{ $message }}</li>
+                                        @endforeach
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif -->
+                        <!-- @if (isset($errorResponse) && count($errorResponse) > 0)
+                            <div style="color: red; margin-bottom: 10px;">
+                                <strong>Please fix the following errors:</strong>
+                                <ul>
+                                    @foreach ($errorResponse as $field => $messages)
+                                        @foreach ($messages as $message)
+                                            <li>{{ ucfirst($field) }}: {{ $message }}</li>
+                                        @endforeach
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif -->
                         <!-- <input type="hidden" name="_token" value="ogpmyYjsQTQY6ELpOcdGwSkwuIAhNqrt2ksOKx8u"
                             autocomplete="off"> -->
                         <div class="">
@@ -93,27 +118,71 @@
                                 <div class="login-form col-lg-10 col-12 mx-auto">
                                     <!-- <h5 class="login_title text-center">Login</h5> -->
                                     <div class="form-group mb-3">
-                                        <input type="text" name="name" value="" id="name" placeholder="Name" class="form-control f-s-13" required=""
+                                        <input type="" name="name" value="{{ isset($old_values['name']) ? $old_values['name'] : '' }}" id="name" placeholder="Name" class="form-control f-s-13" 
                                             autofocus="" autocomplete="username" aria-required="true">
+                                            <span>
+                                                @if (isset($errorResponse['name']) && count($errorResponse['name']) > 0)
+                                                    <div style="color: red; margin-bottom: 10px;">
+                                                        <ul>
+                                                            @foreach ($errorResponse['name'] as $message)
+                                                                <li>{{ ucfirst('name') }}: {{ $message }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                            </span>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="email" name="email" value="" id="email" placeholder="Email"
-                                            class="form-control f-s-13" required="" autofocus="" autocomplete="username"
+                                        <input type="" name="email" value="{{ isset($old_values['email']) ? $old_values['email'] : '' }}" id="email" placeholder="Email"
+                                            class="form-control f-s-13"  autofocus="" autocomplete="username"
                                             aria-required="true">
+                                            <span>
+                                                @if (isset($errorResponse['email']) && count($errorResponse['email']) > 0)
+                                                    <div style="color: red; margin-bottom: 10px;">
+                                                        <ul>
+                                                            @foreach ($errorResponse['email'] as $message)
+                                                                <li>{{ ucfirst('email') }}: {{ $message }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                            </span>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="number" name="number" value="" id="number" placeholder="Phone Number" class="form-control f-s-13" required=""
+                                        <input type="" name="phone_number" value="{{ isset($old_values['phone_number']) ? $old_values['phone_number'] : '' }}" id="phone_number" placeholder="Phone Number" class="form-control f-s-13" 
                                             autofocus="" autocomplete="user number" aria-required="true">
+                                            <span>
+                                            @if (isset($errorResponse['phone_number']) && count($errorResponse['phone_number']) > 0)
+                                                <div style="color: red; margin-bottom: 10px;">
+                                                    <ul>
+                                                        @foreach ($errorResponse['phone_number'] as $message)
+                                                            <li>{{ ucfirst('phone_number') }}: {{ $message }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                          </span>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="password" name="password" id="pwd" placeholder="Password"
-                                            class="form-control f-s-13" required="" autocomplete="current-password"
+                                        <input type="" name="password" value="{{ isset($old_values['password']) ? $old_values['password'] : '' }}" id="pwd" placeholder="Password"
+                                            class="form-control f-s-13"  autocomplete="current-password"
                                             aria-required="true">
                                        
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="password" name="confirmpassword" id="pwd" placeholder="Confirm password" class="form-control f-s-13" required=""
+                                        <input type="" name="confirmpassword" id="pwd" placeholder="Confirm password" class="form-control f-s-13" 
                                             autocomplete="confirm-password" aria-required="true">
+                                            <span>
+                                                @if (isset($errorResponse['password']) && count($errorResponse['password']) > 0)
+                                                    <div style="color: red; margin-bottom: 10px;">
+                                                        <ul>
+                                                            @foreach ($errorResponse['password'] as $message)
+                                                                <li>{{ ucfirst('password') }}: {{ $message }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                            </span>
                                     
                                     </div>
                                     <div class="text-center">

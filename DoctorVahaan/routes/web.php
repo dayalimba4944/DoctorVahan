@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\UserController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::post('/log-in', [AuthController::class, 'logIn']);
+// Route::post('/sign-up', [UserController::class, 'store']);
+Route::post('/sign-up', [UserController::class, 'store'])->name('signup');
+Route::post('/get-quote', [AuthController::class, 'getQuote'])->name('getQuote');
+
 
 Route::get('/', function () {
     return view('welcome');
