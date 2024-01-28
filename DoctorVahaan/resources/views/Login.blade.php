@@ -14,7 +14,8 @@
         <div class="container mt-5">
             <div class="row justify-content-center mt-5">
                 <div class="col-lg-6 col-md-10 col-sm-12 login_form p-md-5 p-2">
-                    <form action="" method="POST" class="w-100">
+                    <form action="{{ ('log-in') }}" method="POST" class="w-100">
+                    @csrf
                         <!-- <input type="hidden" name="_token" value="ogpmyYjsQTQY6ELpOcdGwSkwuIAhNqrt2ksOKx8u"
                             autocomplete="off"> -->
                         <div class="">
@@ -31,14 +32,36 @@
                                 <div class="login-form col-lg-8 col-12 mx-auto">
                                     <h5 class="login_title text-center">Login</h5>
                                     <div class="form-group mb-3">
-                                        <input type="email" name="email" value="" id="email" placeholder="Email"
-                                            class="form-control f-s-13" required="" autofocus="" autocomplete="username"
+                                        <input type="" name="email" value="{{ isset($old_values['email']) ? $old_values['email'] : '' }}" id="email" placeholder="Email"
+                                            class="form-control f-s-13"  autofocus="" autocomplete="username"
                                             aria-required="true">
+                                            <span>
+                                                @if (isset($errorResponse['email']) && count($errorResponse['email']) > 0)
+                                                    <div style="color: red; margin-bottom: 10px;">
+                                                        <ul>
+                                                            @foreach ($errorResponse['email'] as $message)
+                                                                <li>{{ ucfirst('email') }}: {{ $message }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                            </span>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="password" name="password" id="pwd" placeholder="Password"
-                                            class="form-control f-s-13" required="" autocomplete="current-password"
+                                        <input type="password" value="{{ isset($old_values['password']) ? $old_values['password'] : '' }}" name="password" id="pwd" placeholder="Password"
+                                            class="form-control f-s-13"  autocomplete="current-password"
                                             aria-required="true">
+                                            <span>
+                                                @if (isset($errorResponse['password']) && count($errorResponse['password']) > 0)
+                                                    <div style="color: red; margin-bottom: 10px;">
+                                                        <ul>
+                                                            @foreach ($errorResponse['password'] as $message)
+                                                                <li>{{ ucfirst('password') }}: {{ $message }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                            </span>
                                         <p class="my-1 login-text text-end">
                                             Forgot Your Password? <a href="/forgot-password" class=""><u>Click
                                                     here</u></a>
