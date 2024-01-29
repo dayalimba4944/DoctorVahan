@@ -18,9 +18,13 @@ use App\Http\Controllers\Auth\UserController;
 */
 
 Route::post('/log-in', [AuthController::class, 'logIn']);
+Route::get('/log-out', [AuthController::class, 'logOut']);
 // Route::post('/sign-up', [UserController::class, 'store']);
 Route::post('/sign-up', [UserController::class, 'store'])->name('signup');
 Route::post('/get-quote', [AuthController::class, 'getQuote'])->name('getQuote');
+
+// Route::post('/sign-up', 'Auth\UserController@store')->name('sign-up');
+
 
 
 Route::get('/', function () {

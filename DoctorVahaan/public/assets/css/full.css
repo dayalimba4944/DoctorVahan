@@ -482,7 +482,7 @@ a:hover,
 
 a:focus {
 
-    color: var(--color-white);
+    color: var(--color-green);
 
     text-decoration: none;
 
