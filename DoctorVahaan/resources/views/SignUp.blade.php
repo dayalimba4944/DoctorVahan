@@ -170,7 +170,7 @@
                                        
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="" name="confirmpassword" id="pwd" placeholder="Confirm password" class="form-control f-s-13" 
+                                        <input type="" name="password_confirmation" value="{{ isset($old_values['password_confirmation']) ? $old_values['password_confirmation'] : '' }}" id="pwd" placeholder="Confirm password" class="form-control f-s-13" 
                                             autocomplete="confirm-password" aria-required="true">
                                             <span>
                                                 @if (isset($errorResponse['password']) && count($errorResponse['password']) > 0)

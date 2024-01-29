@@ -8,6 +8,9 @@
 
 
 @section('content')
+@if(session()->has('user_id'))
+    <{{ session('user_id') }}
+@endif
 <content>
     <div class="header_banner_wrapper">
         <div class="col-12">
@@ -21,7 +24,10 @@
                 <div class="customcontainer mx-auto">
                     <div class="banner_text  col-md-8 col-lg-6 col-11">
                         <h3>Protect Your
-                            Investment</h3>
+                            Investment
+                            <p>
+                                
+                            </p></h3>
                         <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus
                             nec ullamcorper mattis, pulvinar dapibus leo.</p>
                         <button class="mt-lg-4 mt-2">Get a Quote</button>

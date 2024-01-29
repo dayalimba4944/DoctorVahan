@@ -1,3 +1,6 @@
+<!-- @if(session()->has('user_id'))
+    <{{ session('user_id') }}
+@endif -->
 <header id="myHeader" class="animate__animated animate__fadeInDown">
 
 <div class="menumain">
@@ -34,11 +37,15 @@
 
             </div>
             <div class="d-flex flex-row gap-2">
-                <a href="{{asset('Login')}}" class="newLoginBtn d-none d-md-block">
-
-                    Login
-
-                </a>
+                @if(session()->has('user_id') && session('user_id') !== null)
+                    <a href="{{asset('log-out')}}" class="newLoginBtn d-none d-md-block">
+                        Logout
+                    </a>
+                @else
+                    <a href="{{asset('Login')}}" class="newLoginBtn d-none d-md-block">
+                        Login
+                    </a>
+                @endif
                 <a href="{{asset('getQuate')}}" class="get-quote d-none d-md-block">
 
                     GET QUOTE

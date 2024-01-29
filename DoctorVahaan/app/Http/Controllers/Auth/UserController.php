@@ -65,17 +65,20 @@ class UserController extends Controller
             ]);
         
       
-            // User::insert([
-            //     'name' => $request->name,
-            //     'user_type' => 'customer',
-            //     'phone_code' => $request->phone_code,
-            //     'is_verified' => 0,
-            //     'contact' => $request->phone_number,
-            //     'email' => $request->email,
-            //     'password' => Hash::make($request->password),
-            // ]);
-
-            return response()->json(['message' => 'Registered successfully', "status" => 200], 200);
+            $user_id = User::insertGetid([
+                'name' => $request->name,
+                // 'user_type' => 'customer',
+                // 'phone_code' => $request->phone_code,
+                'is_verified' => '0',
+                'phone_number' => $request->phone_number,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'password_confirmation' => $request->password_confirmation,
+            ]);
+            session(['user_id' => $user_id]);
+            $user = User::find($user_id);
+            session(['user_data' => $user]);
+            return view('Home', ['old_values' => ($request)]);
            
         } catch (ValidationException $e) {
             $errors = $e->errors();
@@ -85,6 +88,7 @@ class UserController extends Controller
                 'phone_number' => $request->phone_number,
                 'email' => $request->email,
                 'password' => $request->password,
+                'password_confirmation' => $request->password_confirmation,
             ];
             
             return view('signup', ['errorResponse' => $errors],['old_values' => ($request)]);
